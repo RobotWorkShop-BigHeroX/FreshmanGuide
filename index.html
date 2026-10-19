@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>湖南大学 Robot 工作坊 招新与培训知识门户</title>
+  <meta name="description" content="湖南大学现代工程训练中心 Robot 工作坊官方新生招新指南、历年知识归档与寒假精英训练营技术文档门户。">
+  
+  <!-- 第三方库：精确锁定生产版本 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+
+  <style>
+    :root {
+      --bg-base: #0a0d14;
+      --bg-surface: #111726;
+      --bg-elevated: #192238;
+      --bg-hover: #1f2b47;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.25);
+      
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --color-brand: #e11d48;
+      --color-brand-glow: rgba(225, 29, 72, 0.2);
+      --color-accent: #38bdf8;
+      --color-badge: #f59e0b;
+      
+      --sidebar-width: 280px;
+      --outline-width: 240px;
+      --header-height: 64px;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.68;
+      font-size: 15px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 顶部导航条 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: rgba(10, 13, 20, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(225, 29, 72, 0.15);
+      color: #fb7185;
+      font-weight: 600;
+      border: 1px solid rgba(225, 29, 72, 0.3);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      background: transparent;
+      border-color: var(--border-subtle);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-main);
+      background: var(--bg-surface);
+      border-color: var(--border-accent);
+    }
+
+    .btn-primary {
+      background: var(--color-brand);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #be123c;
+      box-shadow: 0 0 16px var(--color-brand-glow);
+    }
+
+    /* 运行环境友好提示条 */
+    #protocol-banner {
+      display: none;
+      background: #422006;
+      border-bottom: 1px solid #78350f;
+      color: #fef08a;
+      padding: 10px 24px;
+      font-size: 13px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #protocol-banner code {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: #fef9c3;
+    }
+
+    /* 页面主布局 */
+    .app-layout {
+      display: flex;
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* 左侧目录侧边栏 */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
+      padding: 20px 16px;
+      height: calc(100vh - var(--header-height));
+      position: sticky;
+      top: var(--header-height);
+      overflow-y: auto;
+    }
+
+    .nav-category {
+      margin-bottom: 24px;
+    }
+
+    .category-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      padding-left: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      margin-bottom: 4px;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-elevated);
+      color: var(--text-main);
+    }
+
+    .nav-item.active {
+      background: var(--bg-elevated);
+      color: #38bdf8;
+      border-color: var(--border-accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-item-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .nav-item.active .nav-item-badge {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
+    .nav-item-meta {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* 中间正文容器 */
+    main.content-area {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 40px 60px 40px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* 顶部紧凑型文档状态栏 */
+    .doc-meta-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .doc-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .doc-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .doc-headline {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .doc-tag {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      font-weight: 600;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .doc-details {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .doc-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Markdown 渲染排版精修 */
+    .markdown-body {
+      color: #cbd5e1;
+      font-size: 15.5px;
+      line-height: 1.78;
+    }
+
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4 {
+      color: #f8fafc;
+      font-weight: 700;
+      margin-top: 1.6em;
+      margin-bottom: 0.7em;
+      line-height: 1.35;
+      scroll-margin-top: calc(var(--header-height) + 20px);
+    }
+
+    .markdown-body h1 {
+      font-size: 28px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.35em;
+    }
+
+    .markdown-body h2 {
+      font-size: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.25em;
+    }
+
+    .markdown-body h3 {
+      font-size: 18px;
+    }
+
+    .markdown-body p {
+      margin-bottom: 1.1em;
+    }
+
+    .markdown-body a {
+      color: #38bdf8;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .markdown-body a:hover {
+      color: #7dd3fc;
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+      margin-bottom: 1.2em;
+      padding-left: 24px;
+    }
+
+    .markdown-body li {
+      margin-bottom: 0.35em;
+    }
+
+    .markdown-body blockquote {
+      border-left: 4px solid var(--color-brand);
+      padding: 12px 18px;
+      background: rgba(225, 29, 72, 0.06);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: #e2e8f0;
+      margin: 1.4em 0;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4em 0;
+      background: var(--bg-surface);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .markdown-body th,
+    .markdown-body td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-subtle);
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .markdown-body th {
+      background: var(--bg-elevated);
+      color: #f8fafc;
+      font-weight: 600;
+    }
+
+    .markdown-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      margin: 1.4em 0;
+      display: block;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .markdown-body pre {
+      background: #0d1117;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin: 1.4em 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .markdown-body code {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 13.5px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #f1f5f9;
+    }
+
+    .markdown-body pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* 右侧文章大纲栏 */
+    aside.outline-bar {
+      width: var(--outline-width);
+      flex-shrink: 0;
+      padding: 24px 16px;
+      height: calc(100vh - var(--header-height));
+      position: sticky;
+      top: var(--header-height);
+      overflow-y: auto;
+    }
+
+    .outline-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .outline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .outline-link {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .outline-link:hover {
+      color: var(--text-muted);
+    }
+
+    .outline-link.active {
+      color: var(--color-accent);
+      border-left-color: var(--color-accent);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .outline-link.depth-3 {
+      padding-left: 18px;
+      font-size: 12px;
+    }
+
+    /* 移动端响应式处理 */
+    @media (max-width: 1080px) {
+      aside.outline-bar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-layout {
+        flex-direction: column;
+      }
+      aside.sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      main.content-area {
+        padding: 24px 16px;
+      }
+      .doc-meta-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .doc-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+      .doc-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header>
+    <a href="#" class="brand">
+      <img src="docs/2026/freshman/assets/RobotWorkShop.jpg" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-title">
+        湖南大学 Robot 工作坊
+        <span class="brand-badge">知识门户</span>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a id="repo-link" href="https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub 组织仓库
+      </a>
+    </div>
+  </header>
+
+  <!-- 本地文件协议提示 -->
+  <div id="protocol-banner">
+    <div>
+      ⚠️ <strong>本地文件预览提示</strong>：受浏览器跨域安全策略影响，直接通过 <code>file://</code> 打开无法读取数据。请在终端执行 <code>python -m http.server 8000</code>，然后访问 <code>http://localhost:8000/</code> 体验完整功能。
+    </div>
+    <button class="btn btn-ghost" style="color: #fef08a; padding: 2px 8px; font-size: 12px;" onclick="document.getElementById('protocol-banner').style.display='none'">我知道了</button>
+  </div>
+
+  <div class="app-layout">
+    <!-- 左侧文档导航 -->
+    <aside class="sidebar">
+      <nav id="nav-container"></nav>
+    </aside>
+
+    <!-- 中间文档主体 -->
+    <main class="content-area">
+      <!-- 紧凑型顶部文档工具栏 -->
+      <section class="doc-meta-card" id="doc-meta" style="display: none;">
+        <div class="doc-info">
+          <div class="doc-title-row">
+            <h1 class="doc-headline" id="meta-title">文档标题</h1>
+            <span class="doc-tag" id="meta-tag">v2026-freshman</span>
+          </div>
+          <div class="doc-details">
+            <span id="meta-date">更新日期: 2026-10-19</span>
+            <span>·</span>
+            <span id="meta-size">PDF: 2.6 MB</span>
+          </div>
+        </div>
+        <div class="doc-actions" id="meta-actions">
+          <a id="btn-pdf" href="#" download class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            下载官方原件 PDF
+          </a>
+        </div>
+      </section>
+
+      <!-- Markdown 正文渲染区域 -->
+      <article class="markdown-body" id="article-content">
+        <div style="padding: 60px 0; text-align: center; color: var(--text-dim);">
+          正在加载文档数据...
+        </div>
+      </article>
+    </main>
+
+    <!-- 右侧大纲导航 -->
+    <aside class="outline-bar">
+      <div class="outline-title">本页大纲</div>
+      <ul class="outline-list" id="outline-list">
+        <li style="color: var(--text-dim); font-size: 12px;">暂无标题</li>
+      </ul>
+    </aside>
+  </div>
+
+  <script>
+    // 1. 全局状态
+    let catalog = null;
+    let currentDoc = null;
+
+    // 2. 检查协议环境
+    if (window.location.protocol === 'file:') {
+      const banner = document.getElementById('protocol-banner');
+      if (banner) banner.style.display = 'flex';
+    }
+
+    // 3. 相对路径重定位解析函数
+    function resolveAssetUrl(src, markdownPath) {
+      if (!src) return '';
+      // 若为外链或 base64，直接返回原地址
+      if (/^(https?:)?\/\//i.test(src) || src.startsWith('data:')) {
+        return src;
+      }
+      // 获取当前 Markdown 所在目录路径
+      const lastSlash = markdownPath.lastIndexOf('/');
+      const baseDir = lastSlash !== -1 ? markdownPath.substring(0, lastSlash + 1) : '';
+      
+      // 去除可能的前置相对标识
+      let cleanSrc = src;
+      if (cleanSrc.startsWith('./')) {
+        cleanSrc = cleanSrc.substring(2);
+      }
+      return baseDir + cleanSrc;
+    }
+
+    // 4. 配置 Marked 与安全净化渲染
+    const renderer = new marked.Renderer();
+
+    // 重载图片渲染：自动重定位 Markdown 相对图片
+    renderer.image = function(href, title, text) {
+      // 兼容 marked v15 参数对象形式
+      let src = typeof href === 'object' ? href.href : href;
+      let imgTitle = typeof href === 'object' ? href.title : title;
+      let altText = typeof href === 'object' ? href.text : text;
+
+      if (currentDoc && currentDoc.markdownPath) {
+        src = resolveAssetUrl(src, currentDoc.markdownPath);
+      }
+      return `<img src="${src}" alt="${altText || ''}" title="${imgTitle || ''}">`;
+    };
+
+    // 重载链接渲染：外部链接安全打开
+    renderer.link = function(href, title, text) {
+      let targetHref = typeof href === 'object' ? href.href : href;
+      let linkTitle = typeof href === 'object' ? href.title : title;
+      let linkText = typeof href === 'object' ? href.text : text;
+
+      if (/^(https?:)?\/\//i.test(targetHref)) {
+        return `<a href="${targetHref}" target="_blank" rel="noopener noreferrer" title="${linkTitle || ''}">${linkText}</a>`;
+      }
+      return `<a href="${targetHref}" title="${linkTitle || ''}">${linkText}</a>`;
+    };
+
+    marked.setOptions({
+      renderer: renderer,
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(code, { language: lang }).value;
+          } catch (_) {}
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      gfm: true,
+      breaks: true
+    });
+
+    // 5. 初始化加载 catalog.json
+    async function initCatalog() {
+      try {
+        const res = await fetch('catalog.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        catalog = await res.json();
+        
+        renderNavigation(catalog);
+        
+        // 依据 URL hash 或默认文档渲染
+        const hashId = window.location.hash.replace(/^#/, '');
+        loadDocument(hashId || catalog.defaultDocId);
+      } catch (err) {
+        console.error('Failed to load catalog:', err);
+        const article = document.getElementById('article-content');
+        article.innerHTML = `
+          <div style="background: rgba(225,29,72,0.1); border: 1px solid rgba(225,29,72,0.3); padding: 24px; border-radius: 8px;">
+            <h2 style="color: #fb7185; margin-top:0;">数据加载受阻</h2>
+            <p>无法成功读取 <code>catalog.json</code> 元数据清单。</p>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">
+              若您正在本地直接打开 HTML，请在终端执行 <code>python -m http.server 8000</code> 后访问 <code>http://localhost:8000/</code>。
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    // 6. 渲染分类导航菜单
+    function renderNavigation(data) {
+      const container = document.getElementById('nav-container');
+      container.innerHTML = '';
+
+      data.categories.forEach(cat => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'nav-category';
+
+        const title = document.createElement('div');
+        title.className = 'category-title';
+        title.textContent = cat.name;
+        catDiv.appendChild(title);
+
+        cat.items.forEach(item => {
+          const itemLink = document.createElement('a');
+          itemLink.className = 'nav-item';
+          itemLink.dataset.id = item.id;
+          itemLink.href = `#${item.id}`;
+          itemLink.onclick = (e) => {
+            e.preventDefault();
+            loadDocument(item.id);
+          };
+
+          itemLink.innerHTML = `
+            <div class="nav-item-header">
+              <span class="nav-item-title">${item.title}</span>
+              <span class="nav-item-badge">${item.badge}</span>
+            </div>
+            <div class="nav-item-meta">${item.releaseTag} · ${item.publishDate}</div>
+          `;
+          catDiv.appendChild(itemLink);
+        });
+
+        container.appendChild(catDiv);
+      });
+    }
+
+    // 7. 加载并渲染文档
+    async function loadDocument(docId) {
+      if (!catalog) return;
+      let targetItem = null;
+      for (const cat of catalog.categories) {
+        for (const it of cat.items) {
+          if (it.id === docId) {
+            targetItem = it;
+            break;
+          }
+        }
+        if (targetItem) break;
+      }
+
+      if (!targetItem) {
+        targetItem = catalog.categories[0].items[0];
+      }
+
+      currentDoc = targetItem;
+      window.location.hash = targetItem.id;
+
+      // 更新侧边栏高亮
+      document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.toggle('active', el.dataset.id === targetItem.id);
+      });
+
+      // 更新顶部工具栏
+      const metaCard = document.getElementById('doc-meta');
+      metaCard.style.display = 'flex';
+      document.getElementById('meta-title').textContent = targetItem.title;
+      document.getElementById('meta-tag').textContent = targetItem.releaseTag;
+      document.getElementById('meta-date').textContent = `更新时间: ${targetItem.updatedAt || targetItem.publishDate}`;
+      document.getElementById('meta-size').textContent = `官方 PDF (${targetItem.pdfSize || ''})`;
+
+      const btnPdf = document.getElementById('btn-pdf');
+      btnPdf.href = targetItem.pdfPath;
+      btnPdf.download = targetItem.pdfPath.split('/').pop();
+
+      // 如果有 Release 附件，追加下载按钮
+      const actions = document.getElementById('meta-actions');
+      const oldAttachBtn = document.getElementById('btn-attachment');
+      if (oldAttachBtn) oldAttachBtn.remove();
+
+      if (targetItem.attachmentUrl) {
+        const btnAttach = document.createElement('a');
+        btnAttach.id = 'btn-attachment';
+        btnAttach.className = 'btn btn-ghost';
+        btnAttach.href = targetItem.attachmentUrl;
+        btnAttach.target = '_blank';
+        btnAttach.rel = 'noopener noreferrer';
+        btnAttach.innerHTML = `
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          下载培训附件包 (${targetItem.attachmentSize || 'ZIP'})
+        `;
+        actions.appendChild(btnAttach);
+      }
+
+      // 请求 Markdown 文本并安全渲染
+      const article = document.getElementById('article-content');
+      article.innerHTML = '<div style="padding: 40px 0; text-align: center; color: var(--text-dim);">加载文档正文中...</div>';
+
+      try {
+        const mdRes = await fetch(targetItem.markdownPath);
+        if (!mdRes.ok) throw new Error(`HTTP ${mdRes.status}`);
+        const mdText = await mdRes.text();
+
+        // 执行 Marked 解析，并经过 DOMPurify 强制净化防御 XSS
+        const rawHtml = marked.parse(mdText);
+        const cleanHtml = DOMPurify.sanitize(rawHtml, {
+          ADD_ATTR: ['target', 'rel']
+        });
+
+        article.innerHTML = cleanHtml;
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // 生成右侧大纲
+        buildOutline(article);
+      } catch (err) {
+        console.error('Failed to load markdown:', err);
+        article.innerHTML = `
+          <div style="background: rgba(225,29,72,0.1); border: 1px solid rgba(225,29,72,0.3); padding: 20px; border-radius: 8px;">
+            <h3 style="color: #fb7185; margin-top:0;">正文加载异常</h3>
+            <p>无法读取文档：<code>${targetItem.markdownPath}</code>。</p>
+          </div>
+        `;
+      }
+    }
+
+    // 8. 实时大纲解析与滚动监听
+    function buildOutline(articleEl) {
+      const outlineList = document.getElementById('outline-list');
+      outlineList.innerHTML = '';
+
+      const headings = articleEl.querySelectorAll('h2, h3');
+      if (headings.length === 0) {
+        outlineList.innerHTML = '<li style="color: var(--text-dim); font-size: 12px;">本篇未设置二级标题</li>';
+        return;
+      }
+
+      headings.forEach((heading, idx) => {
+        if (!heading.id) {
+          heading.id = `heading-${idx}`;
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.className = 'outline-link' + (heading.tagName === 'H3' ? ' depth-3' : '');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent.replace(/^#+\s*/, '');
+        a.onclick = (e) => {
+          e.preventDefault();
+          heading.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        li.appendChild(a);
+        outlineList.appendChild(li);
+      });
+
+      // 滚动高亮当前章节
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            document.querySelectorAll('.outline-link').forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }, {
+        rootMargin: '-60px 0px -70% 0px'
+      });
+
+      headings.forEach(h => observer.observe(h));
+    }
+
+    // 9. 监听 hash 变动
+    window.addEventListener('hashchange', () => {
+      const hashId = window.location.hash.replace(/^#/, '');
+      if (hashId && (!currentDoc || currentDoc.id !== hashId)) {
+        loadDocument(hashId);
+      }
+    });
+
+    // 启动执行
+    document.addEventListener('DOMContentLoaded', initCatalog);
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "siteTitle": "湖南大学 Robot 工作坊知识门户",
+  "orgName": "RobotWorkShop-BigHeroX",
+  "repoUrl": "https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide",
+  "defaultDocId": "freshman-2026",
+  "categories": [
+    {
+      "name": "历年招新指南",
+      "items": [
+        {
+          "id": "freshman-2026",
+          "year": 2026,
+          "title": "2026 级 Robot 工作坊新生指南",
+          "badge": "最新发行版",
+          "releaseTag": "v2026-freshman",
+          "publishDate": "2026-10-19",
+          "updatedAt": "2026-10-19",
+          "markdownPath": "docs/2026/freshman/新生指南.md",
+          "pdfPath": "docs/2026/freshman/湖南大学Robot工作坊2026新生指南.pdf",
+          "pdfSize": "2.6 MB",
+          "summary": "面向 2026 级新成员的极客入门指南与知识工程体系，重点涵盖具身智能与人形机器人前沿业务。"
+        },
+        {
+          "id": "freshman-2025",
+          "year": 2025,
+          "title": "2025 级 Robot 工作坊新生指南",
+          "badge": "历史原件",
+          "releaseTag": "v2025-freshman",
+          "publishDate": "2024-09-15",
+          "updatedAt": "2024-09-15",
+          "markdownPath": "docs/2025/freshman/2025新生指南.md",
+          "pdfPath": "docs/2025/freshman/ROBOT工作坊2025新生的第一份指南.pdf",
+          "pdfSize": "664 KB",
+          "summary": "2025 级招新官方原件归档，涵盖传统竞赛体系、编程入门与基础考核要求。"
+        }
+      ]
+    },
+    {
+      "name": "寒假精英训练营",
+      "items": [
+        {
+          "id": "winter-2025",
+          "year": 2025,
+          "title": "2025 寒假精英培训计划与材料",
+          "badge": "冬训档案",
+          "releaseTag": "v2025-winter",
+          "publishDate": "2025-01-18",
+          "updatedAt": "2025-01-18",
+          "markdownPath": "docs/2025/winter-camp/2025寒假训练营.md",
+          "pdfPath": "docs/2025/winter-camp/2025寒假训练营.pdf",
+          "pdfSize": "310 KB",
+          "attachmentUrl": "https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/download/v2025-winter/2025%E5%8F%B2%E5%81%87%E8%AE%AD%E7%BB%83%E8%90%A5%E5%9F%B9%E8%AE%AD%E9%99%84%E4%BB%B6.zip",
+          "attachmentSize": "58.5 MB",
+          "summary": "第五届寒假精英冬训计划通知与细则，包含 SolidWorks 机械建模与立创EDA 电路设计专项。"
+        }
+      ]
+    }
+  ]
+}

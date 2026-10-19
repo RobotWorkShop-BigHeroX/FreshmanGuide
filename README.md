@@ -1,73 +1,96 @@
-# 湖南大学 Robot 工作坊 2026 新生指南
+# 湖南大学 Robot 工作坊招新与培训知识门户 (FreshmanGuide)
 
-> **Hunan University Robot Workshop 2026 Freshman Guidebook**  
-> 凝聚热血与热爱 · 面向 2026 级新成员的极客入门指南与知识图谱
+> **Hunan University Robot Workshop Freshman Guide & Training Portal**  
+> 湖南大学现代工程训练中心 Robot 工作坊官方知识门户 · 凝聚热血与热爱 · 传承极客工程精神
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/Online%20Portal-GitHub%20Pages-blue.svg)](https://robotworkshop-bigherox.github.io/FreshmanGuide/)
 
 ---
 
-## 📖 项目简介
+## 🌐 在线阅读与门户访问
 
-本项目是**湖南大学 Robot 工作坊**面向 2026 级招新与新成员培养打造的官方新生指南手册。
+本项目提供纯静态 SPA 在线阅读门户，支持全文检索、响应式排版、右侧目录大纲跳转与各版本原件下载：
 
-手册旨在帮助对机器人竞赛与工程实践感兴趣的新同学快速建立系统的认知脉络，涵盖工坊发展脉络、核心竞赛矩阵、技术学习递进路线以及日常科研协作准则，消除零基础顾虑，树立严谨靠谱的极客工程素养。
-
----
-
-## 📂 仓库文件清单
-
-仓库经过深度精简与规范化整理，保留核心源码与单一正式发行文件：
-
-| 文件名 | 格式 / 类型 | 说明 |
-| :--- | :--- | :--- |
-| **`湖南大学Robot工作坊2026新生指南.pdf`** | 最终发行版 PDF | 排版优雅的正式发布版手册（基于 ClassicThesis 风格排版） |
-| **`新生指南.md`** | Markdown 源码 | 完整的轻量级文本，支持在线阅读与全文检索 |
-| **`新生指南.tex`** | XeLaTeX 源码 | 高质量排版源码，含定制宏包配置、版面几何与色彩方案 |
-| **`generate_tex.py`** | Python 构建脚本 | 自动化构建/更新 LaTeX 源码的生成脚本 |
-| **`pyproject.toml` / `uv.lock`** | Python 工程配置 | 基于 [uv](https://github.com/astral-sh/uv) 现代化包管理器管理 |
-| **`image/` & `RobotWorkShop.jpg`** | 架构图与工坊徽标 | 包含 RoboCup 人形赛项四大核心研发组架构图与主力赛事全景图 |
-| **`README.md`** | 仓库说明 | 本文档，包含项目导航与本地构建指南 |
-| **`LICENSE`** | 开源协议 | [MIT License](LICENSE) 授权许可 |
-| **`.gitignore`** | Git 配置文件 | 忽略 LaTeX 编译中间缓存、Python 字节码与系统临时文件 |
+- **官方在线门户**：[https://robotworkshop-bigherox.github.io/FreshmanGuide/](https://robotworkshop-bigherox.github.io/FreshmanGuide/)
+- **数据驱动配置**：全局清单由根目录 [`catalog.json`](catalog.json) 统筹驱动。
 
 ---
 
-## 🛠️ 本地编译与构建指南
+## 📚 知识归档矩阵
 
-若需对手册进行内容修改并重新编译生成 PDF，请按以下步骤操作：
+本仓库对湖南大学 Robot 工作坊历年招新指南、竞赛经验与冬训材料进行系统化归档与长青维护：
 
-### 1. 环境依赖
-- **Python 包管理**：推荐安装 [uv](https://github.com/astral-sh/uv)。
-- **LaTeX 编译引擎**：推荐安装 [TeX Live](https://www.tug.org/texlive/) 或 [MacTeX](https://www.tug.org/mactex/)。
-- **排版引擎**：`XeLaTeX`。
-- **系统字体**：
-  - 中文字体：`SimSun`（宋体）、`SimHei`（黑体）、`KaiTi`（楷体）。
-  - 西文字体：`Palatino Linotype`、`Arial`、`Consolas`。
+| 年份 / 分类 | 文档标题 | 发布标签 | 官方原件 / 资产 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| **2026 招新指南** | 2026 级 Robot 工作坊新生指南 | `v2026-freshman` | [官方发行版 PDF](docs/2026/freshman/湖南大学Robot工作坊2026新生指南.pdf) (2.6 MB) | 唯一内容源驱动，涵盖具身智能与双足人形机器人前沿业务 |
+| **2025 招新指南** | 2025 级 Robot 工作坊新生指南 | `v2025-freshman` | [官方原件 PDF](docs/2025/freshman/ROBOT工作坊2025新生的第一份指南.pdf) (664 KB) | 历史原件归档，涵盖传统竞赛体系、编程入门与基础考核 |
+| **2025 寒假冬训** | 2025 寒假精英培训计划与材料 | `v2025-winter` | [官方通知 PDF](docs/2025/winter-camp/2025寒假训练营.pdf) (310 KB) / [Release附件包](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter) | 第五届冬训计划通知细则，配套 SolidWorks 与立创EDA 实战包 |
 
-### 2. 重新生成并编译 PDF
-在项目根目录下打开终端，执行以下命令：
+---
 
+## 🚀 本地调试与快速启动
+
+本项目前端采用原生 HTML5、现代 CSS 与纯 JavaScript 构建，遵循浏览器安全规范：
+
+### 1. 本地启动 HTTP 阅读服务器
 ```bash
-# 1. 使用 uv 运行 Python 脚本生成/更新 LaTeX 源码
-uv run python generate_tex.py
+# 在仓库根目录启动轻量级 HTTP 服务
+python -m http.server 8000
+```
+在浏览器中打开：[http://localhost:8000/](http://localhost:8000/) 即可流畅浏览与调试。
 
-# 2. 使用 XeLaTeX 编译生成 PDF（建议编译两次以确保目录与页码跳转正确更新）
-xelatex -interaction=nonstopmode 新生指南.tex
-xelatex -interaction=nonstopmode 新生指南.tex
+### 2. 运行全量前置回归检验
+```bash
+# 运行统一自动化测试套件
+python scripts/run_checks.py
+```
+
+---
+
+## 📁 仓库目录结构
+
+```text
+FreshmanGuide/
+├── .github/workflows/
+│   └── deploy-pages.yml         # GitHub Pages 自动化前置验证与部署工作流
+├── docs/
+│   ├── 2025/
+│   │   ├── freshman/            # 2025 级新生招新历史档案与原件 PDF
+│   │   └── winter-camp/         # 2025 寒假精英训练营细则与官方通知 PDF
+│   └── 2026/
+│       └── freshman/            # 2026 级新生指南核心工程 (SSOT Markdown + XeLaTeX 源码 + 资产)
+│           ├── assets/          # 徽标与架构图表 (RobotWorkShop.jpg, png)
+│           ├── generate_tex.py  # LaTeX 刷新构建脚本
+│           ├── 新生指南.md       # 唯一事实来源 (SSOT)
+│           ├── 新生指南.tex      # ClassicThesis 优雅排版源码
+│           └── 湖南大学Robot工作坊2026新生指南.pdf # 最终发行版 PDF
+├── scripts/                     # 生产回归测试脚本套件 (CI 前置门禁)
+│   ├── run_checks.py            # 统一测试执行入口
+│   ├── test_2025_freshman.py    # 2025 归档完整性检验
+│   ├── test_2025_winter.py      # 2025 训练营与附件过滤检验
+│   ├── test_2026_build.py       # 2026 编译生成全链检验
+│   ├── test_deployment_config.py# 工作流与文档合规检验
+│   ├── test_web_reader.py       # 前端架构与安全注入检验
+│   └── validate_catalog.py      # catalog.json 元数据格式检验
+├── catalog.json                 # 全局数据驱动清单
+├── index.html                   # 原生科技极客风格 SPA 在线阅读站
+├── pyproject.toml / uv.lock     # Python 依赖管理配置
+├── README.md                    # 本文档
+└── LICENSE                      # MIT 开源协议
 ```
 
 ---
 
 ## 🤝 编著者与贡献者
 
-- **编著者**：李鸿 (`2868014836@qq.com`)
-- **贡献者**：江涛、李书淇、乔淼 等原著作者 $\cdot$ 工坊历届队员与指导团队
-- **出品方**：湖南大学现代工程训练中心 Robot 工作坊
-- **指导精神**：知行合一 · 追求极致 · 传承热爱
+- **2026 编著者**：李鸿 (`2868014836@qq.com`)
+- **原著与历史贡献者**：江涛、李书淇、乔淼 等原著作者 $\cdot$ 工坊历届队员与指导团队
+- **出品机构**：湖南大学现代工程训练中心 Robot 工作坊
 
 ---
 
-## 📄 开源协议
+## 📄 知识产权与使用授权
 
-本项目采用 [MIT License](LICENSE) 开源协议。
+1. **开源授权**：本仓库的代码、排版脚本、自动化测试套件以及原创指南正文依据 [MIT License](LICENSE) 协议开源。
+2. **教学培训资料说明**：寒假精英训练营中的 SolidWorks 机器人模型、立创EDA 教学演示板工程、讲义文档及视频由湖南大学 Robot 工作坊往届成员编写制作，版权归工坊所有，仅供校内学生社团及机器人爱好者学术交流与实践培训使用，禁止任何未经授权的商业用途；所附带的元器件公开技术数据手册（Datasheet）及芯片参考封装版权归各半导体原厂商所有。

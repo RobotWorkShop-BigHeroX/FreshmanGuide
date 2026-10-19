@@ -128,7 +128,7 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
         \vspace*{0.6cm}
         
         % 居中展示官方 Logo
-        \includegraphics[width=3.8cm]{RobotWorkShop.jpg}\\[0.8cm]
+        \includegraphics[width=3.8cm]{assets/RobotWorkShop.jpg}\\[0.8cm]
         
         {\large\color{halfgray}\spacedallcaps{HUNAN UNIVERSITY $\cdot$ ROBOT WORKSHOP}}\\[0.3cm]
         {\footnotesize\color{halfgray}\spacedallcaps{Modern Engineering Training Center $\cdot$ 2026 Edition}}\\[1.5cm]
@@ -230,7 +230,7 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.88\textwidth]{image/robocup_subgroups.png}
+    \includegraphics[width=0.88\textwidth]{assets/robocup_subgroups.png}
     \caption{RoboCup 人形机器人赛项四大核心研发小组架构}
 \end{figure}
 
@@ -252,7 +252,7 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.92\textwidth]{image/main_competitions.png}
+    \includegraphics[width=0.92\textwidth]{assets/main_competitions.png}
     \caption{Robot工作坊主力赛事技术栈全景分布}
 \end{figure}
 

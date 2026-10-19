@@ -1,0 +1,10 @@
+[project]
+name = "hnu-robot-guide2026"
+version = "1.0.0"
+description = "湖南大学 Robot 工作坊 2026 新生指南与 XeLaTeX 源码构建工程"
+readme = "README.md"
+authors = [
+    { name = "李鸿", email = "2868014836@qq.com" }
+]
+requires-python = ">=3.10"
+dependencies = []

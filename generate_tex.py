@@ -67,6 +67,7 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
 \definecolor{CTLightGray}{RGB}{242,242,242}
 
 \hypersetup{
+    unicode=true,
     colorlinks=true,
     linktoc=all,
     linktocpage=false,
@@ -74,7 +75,7 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
     citecolor=CTMaroon,
     urlcolor=CTMaroon,
     pdfstartview={FitH},
-    pdfauthor={湖南大学现代工程训练中心 Robot 工作坊},
+    pdfauthor={李鸿(2868014836@qq.com)},
     pdftitle={湖南大学 Robot 工作坊 2026 新生指南},
     pdfsubject={新生招新与技术进阶成长指南}
 }
@@ -146,8 +147,8 @@ tex_content = r'''\documentclass[a4paper,11pt,oneside]{scrreprt}
         \begin{minipage}{0.85\textwidth}
             \centering\small\color{CTCharcoal}
             \rule{0.6\textwidth}{0.4pt}\\[0.5cm]
-            \spacedlowsmallcaps{编著者：Robot 工作坊历届队员与指导团队}\\[0.25cm]
-            \textit{江涛、李书淇、乔淼 等原著 $\cdot$ 2026 具身智能全新修订}\\[0.35cm]
+            \spacedlowsmallcaps{编著者：李鸿 (2868014836@qq.com)}\\[0.25cm]
+            \textit{贡献者：江涛、李书淇、乔淼 等原著 $\cdot$ 历届队员与指导团队}\\[0.35cm]
             {\footnotesize\color{halfgray} 2026 年 9 月 $\cdot$ 长沙岳麓山下}
         \end{minipage}
         \vspace*{0.8cm}

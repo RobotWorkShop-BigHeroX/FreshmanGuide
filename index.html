@@ -1,42 +1,64 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="paper">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>湖南大学 Robot 工作坊 招新与培训知识门户</title>
-  <meta name="description" content="湖南大学现代工程训练中心 Robot 工作坊官方新生招新指南、历年知识归档与寒假精英训练营技术文档门户。">
-  
+  <meta name="description" content="湖南大学现代工程训练中心 Robot 工作坊官方新生指南、历年归档与寒假精英训练营技术文档门户。">
+
   <!-- 第三方库：精确锁定生产版本 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" id="hljs-theme">
   <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
 
   <style>
-    :root {
-      --bg-base: #0a0d14;
-      --bg-surface: #111726;
-      --bg-elevated: #192238;
-      --bg-hover: #1f2b47;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(56, 189, 248, 0.25);
+    /* ==========================================
+       设计系统 Tokens：纸书级经典出版物排版体系
+       ========================================== */
+    :root, [data-theme="paper"] {
+      --bg-page: #fbfbfa;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f4f4f2;
+      --bg-drawer: rgba(251, 251, 250, 0.94);
+      --border-subtle: #e7e5e4;
+      --border-accent: #881337;
+      
+      --text-main: #1c1917;
+      --text-muted: #57534e;
+      --text-dim: #78716c;
+      
+      --color-academic: #881337;
+      --color-academic-soft: rgba(136, 19, 55, 0.08);
+      --color-accent: #0284c7;
+      --color-badge: #d97706;
+      
+      --booktabs-rule: #1c1917;
+      --shadow-dock: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.04);
+      --reader-width: 820px;
+    }
+
+    [data-theme="night"] {
+      --bg-page: #0f141c;
+      --bg-surface: #151b26;
+      --bg-elevated: #1e2638;
+      --bg-drawer: rgba(15, 20, 28, 0.94);
+      --border-subtle: #242f44;
+      --border-accent: #fb7185;
       
       --text-main: #f1f5f9;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       
-      --color-brand: #e11d48;
-      --color-brand-glow: rgba(225, 29, 72, 0.2);
+      --color-academic: #fb7185;
+      --color-academic-soft: rgba(251, 113, 133, 0.12);
       --color-accent: #38bdf8;
       --color-badge: #f59e0b;
       
-      --sidebar-width: 280px;
-      --outline-width: 240px;
-      --header-height: 64px;
-      
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
+      --booktabs-rule: #cbd5e1;
+      --shadow-dock: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
 
     * {
@@ -46,613 +68,643 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      background-color: var(--bg-base);
+      background-color: var(--bg-page);
       color: var(--text-main);
-      line-height: 1.68;
-      font-size: 15px;
-      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.78;
+      font-size: 16px;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
     }
 
-    /* 顶部导航条 */
-    header {
+    /* 衬线学术标题字体 */
+    .font-serif {
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", Georgia, serif;
+    }
+
+    /* 顶部紧凑页眉 */
+    header.academic-header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      height: var(--header-height);
-      background: rgba(10, 13, 20, 0.85);
-      backdrop-filter: blur(14px);
+      z-index: 50;
+      background: var(--bg-drawer);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 32px;
     }
 
-    .brand {
+    .header-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+    }
+
+    .brand-stamp {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
       color: var(--text-main);
     }
 
     .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
       object-fit: cover;
-      border: 1px solid var(--border-subtle);
     }
 
     .brand-title {
-      font-size: 16px;
+      font-size: 14.5px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.2px;
+    }
+
+    .doc-picker-wrapper {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 8px;
     }
 
-    .brand-badge {
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(225, 29, 72, 0.15);
-      color: #fb7185;
+    .doc-select {
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 4px 28px 4px 10px;
+      font-size: 13px;
       font-weight: 600;
-      border: 1px solid rgba(225, 29, 72, 0.3);
+      cursor: pointer;
+      appearance: none;
+      outline: none;
+      transition: border-color 0.2s ease;
     }
 
-    .nav-actions {
+    .doc-select:hover {
+      border-color: var(--color-academic);
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 9px;
+      pointer-events: none;
+      color: var(--text-dim);
+    }
+
+    .header-right {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .btn {
+    .icon-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: 6px;
+      width: 32px;
+      height: 32px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
-      transition: all 0.2s ease;
+      justify-content: center;
       cursor: pointer;
-      border: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
-    .btn-ghost {
-      color: var(--text-muted);
-      background: transparent;
-      border-color: var(--border-subtle);
-    }
-
-    .btn-ghost:hover {
+    .icon-btn:hover {
       color: var(--text-main);
-      background: var(--bg-surface);
-      border-color: var(--border-accent);
+      background: var(--bg-elevated);
+      border-color: var(--text-dim);
     }
 
-    .btn-primary {
-      background: var(--color-brand);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #be123c;
-      box-shadow: 0 0 16px var(--color-brand-glow);
-    }
-
-    /* 运行环境友好提示条 */
+    /* 本地协议运行提示条 */
     #protocol-banner {
       display: none;
-      background: #422006;
-      border-bottom: 1px solid #78350f;
-      color: #fef08a;
-      padding: 10px 24px;
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      color: #92400e;
+      padding: 8px 32px;
       font-size: 13px;
       align-items: center;
       justify-content: space-between;
     }
 
     #protocol-banner code {
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.08);
       padding: 2px 6px;
       border-radius: 4px;
       font-family: monospace;
-      color: #fef9c3;
     }
 
-    /* 页面主布局 */
-    .app-layout {
-      display: flex;
-      min-height: calc(100vh - var(--header-height));
+    /* 居中单栏长卷容器 */
+    main.academic-reader {
+      max-width: var(--reader-width);
+      margin: 0 auto;
+      padding: 48px 24px 120px 24px;
     }
 
-    /* 左侧目录侧边栏 */
-    aside.sidebar {
-      width: var(--sidebar-width);
-      flex-shrink: 0;
-      background: var(--bg-surface);
-      border-right: 1px solid var(--border-subtle);
-      padding: 20px 16px;
-      height: calc(100vh - var(--header-height));
-      position: sticky;
-      top: var(--header-height);
-      overflow-y: auto;
+    /* 论文级卷首 */
+    .paper-masthead {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 28px;
     }
 
-    .nav-category {
-      margin-bottom: 24px;
-    }
-
-    .category-title {
+    .paper-org-label {
       font-size: 12px;
       font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-dim);
+      color: var(--color-academic);
       margin-bottom: 10px;
-      padding-left: 8px;
     }
 
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      padding: 10px 12px;
-      border-radius: var(--radius-sm);
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: all 0.15s ease;
-      cursor: pointer;
-      margin-bottom: 4px;
-      border: 1px solid transparent;
-    }
-
-    .nav-item:hover {
-      background: var(--bg-elevated);
+    .paper-title {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
       color: var(--text-main);
+      margin-bottom: 14px;
     }
 
-    .nav-item.active {
-      background: var(--bg-elevated);
-      color: #38bdf8;
-      border-color: var(--border-accent);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-item-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .nav-item-title {
-      font-size: 14px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .nav-item-badge {
-      font-size: 10px;
-      padding: 1px 6px;
-      border-radius: 4px;
-      background: rgba(56, 189, 248, 0.1);
-      color: #38bdf8;
-      font-weight: 600;
-    }
-
-    .nav-item.active .nav-item-badge {
-      background: rgba(56, 189, 248, 0.25);
-    }
-
-    .nav-item-meta {
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    /* 中间正文容器 */
-    main.content-area {
-      flex: 1;
-      min-width: 0;
-      padding: 32px 40px 60px 40px;
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    /* 顶部紧凑型文档状态栏 */
-    .doc-meta-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 18px 22px;
-      margin-bottom: 32px;
+    .paper-meta-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
       gap: 16px;
+      font-size: 13.5px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
     }
 
-    .doc-info {
+    .meta-tag-pill {
+      font-size: 11.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--color-academic-soft);
+      color: var(--color-academic);
+      font-weight: 600;
+      border: 1px solid rgba(136, 19, 55, 0.2);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .meta-tag-pill:hover {
+      background: var(--color-academic);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* 快速官方原件下载条 */
+    .paper-actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-academic);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
+    .action-divider {
+      color: var(--border-subtle);
+    }
+
+    /* Markdown 正文排版 */
+    .academic-prose {
+      color: var(--text-main);
+    }
+
+    .academic-prose h1,
+    .academic-prose h2,
+    .academic-prose h3,
+    .academic-prose h4 {
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
+      color: var(--text-main);
+      font-weight: 700;
+      margin-top: 1.8em;
+      margin-bottom: 0.6em;
+      line-height: 1.35;
+      scroll-margin-top: 80px;
+    }
+
+    .academic-prose h1 {
+      font-size: 26px;
+      border-bottom: 1.5px solid var(--border-subtle);
+      padding-bottom: 0.3em;
+    }
+
+    .academic-prose h2 {
+      font-size: 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.25em;
+    }
+
+    .academic-prose h3 {
+      font-size: 18px;
+    }
+
+    .academic-prose p {
+      margin-bottom: 1.25em;
+      text-align: justify;
+    }
+
+    .academic-prose a {
+      color: var(--color-academic);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .academic-prose a:hover {
+      opacity: 0.8;
+    }
+
+    .academic-prose ul,
+    .academic-prose ol {
+      margin-bottom: 1.3em;
+      padding-left: 28px;
+    }
+
+    .academic-prose li {
+      margin-bottom: 0.4em;
+    }
+
+    /* ClassicThesis 学术提示框 */
+    .academic-prose blockquote {
+      margin: 1.6em 0;
+      padding: 14px 20px;
+      background: var(--bg-surface);
+      border-left: 3.5px solid var(--color-academic);
+      border-radius: 0 6px 6px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* 学术三线表 (Booktabs) */
+    .academic-prose table {
+      width: 100%;
+      margin: 2em 0;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      border-top: 2px solid var(--booktabs-rule);
+      border-bottom: 2px solid var(--booktabs-rule);
+    }
+
+    .academic-prose th,
+    .academic-prose td {
+      padding: 10px 14px;
+      text-align: left;
+      border: none;
+    }
+
+    .academic-prose th {
+      font-weight: 700;
+      border-bottom: 1px solid var(--booktabs-rule);
+      color: var(--text-main);
+    }
+
+    .academic-prose tr:hover {
+      background: var(--color-academic-soft);
+    }
+
+    /* 图片与学术题注 */
+    .academic-prose img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 1.8em auto 0.6em auto;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* 代码块与代码标签 */
+    .academic-prose code {
+      font-family: "SF Mono", Menlo, Consolas, Monaco, monospace;
+      font-size: 13.5px;
+      background: var(--bg-elevated);
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: var(--color-academic);
+    }
+
+    .academic-prose pre {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 1.6em 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .academic-prose pre code {
+      background: transparent;
+      padding: 0;
+      color: var(--text-main);
+    }
+
+    /* 右下角极简悬浮交互底座 (Floating Dock) */
+    .floating-dock {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-drawer);
+      backdrop-filter: blur(16px);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-dock);
+    }
+
+    .dock-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .dock-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-elevated);
+    }
+
+    .dock-btn.active {
+      color: var(--color-academic);
+      background: var(--color-academic-soft);
+    }
+
+    /* 侧边滑动大纲抽屉 (Outline Drawer) */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    aside.outline-drawer {
+      position: fixed;
+      top: 0;
+      right: -360px;
+      width: 340px;
+      height: 100vh;
+      z-index: 100;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+      padding: 24px 20px;
+      overflow-y: auto;
+      transition: right 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    aside.outline-drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drawer-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-dim);
+    }
+
+    .drawer-close {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-dim);
+      padding: 4px;
+    }
+
+    .drawer-close:hover {
+      color: var(--text-main);
+    }
+
+    .drawer-nav-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .doc-title-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .doc-headline {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .doc-tag {
-      font-size: 12px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      font-weight: 600;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .doc-details {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .doc-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* Markdown 渲染排版精修 */
-    .markdown-body {
-      color: #cbd5e1;
-      font-size: 15.5px;
-      line-height: 1.78;
-    }
-
-    .markdown-body h1,
-    .markdown-body h2,
-    .markdown-body h3,
-    .markdown-body h4 {
-      color: #f8fafc;
-      font-weight: 700;
-      margin-top: 1.6em;
-      margin-bottom: 0.7em;
-      line-height: 1.35;
-      scroll-margin-top: calc(var(--header-height) + 20px);
-    }
-
-    .markdown-body h1 {
-      font-size: 28px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.35em;
-    }
-
-    .markdown-body h2 {
-      font-size: 22px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 0.25em;
-    }
-
-    .markdown-body h3 {
-      font-size: 18px;
-    }
-
-    .markdown-body p {
-      margin-bottom: 1.1em;
-    }
-
-    .markdown-body a {
-      color: #38bdf8;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .markdown-body a:hover {
-      color: #7dd3fc;
-    }
-
-    .markdown-body ul,
-    .markdown-body ol {
-      margin-bottom: 1.2em;
-      padding-left: 24px;
-    }
-
-    .markdown-body li {
-      margin-bottom: 0.35em;
-    }
-
-    .markdown-body blockquote {
-      border-left: 4px solid var(--color-brand);
-      padding: 12px 18px;
-      background: rgba(225, 29, 72, 0.06);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      color: #e2e8f0;
-      margin: 1.4em 0;
-    }
-
-    .markdown-body table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.4em 0;
-      background: var(--bg-surface);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .markdown-body th,
-    .markdown-body td {
-      padding: 10px 14px;
-      border: 1px solid var(--border-subtle);
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .markdown-body th {
-      background: var(--bg-elevated);
-      color: #f8fafc;
-      font-weight: 600;
-    }
-
-    .markdown-body img {
-      max-width: 100%;
-      height: auto;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      margin: 1.4em 0;
+    .drawer-nav-link {
       display: block;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    .markdown-body pre {
-      background: #0d1117;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      margin: 1.4em 0;
-      overflow-x: auto;
-      position: relative;
-    }
-
-    .markdown-body code {
-      font-family: Consolas, Monaco, "Courier New", monospace;
+      padding: 6px 10px;
       font-size: 13.5px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: #f1f5f9;
-    }
-
-    .markdown-body pre code {
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
-    }
-
-    /* 右侧文章大纲栏 */
-    aside.outline-bar {
-      width: var(--outline-width);
-      flex-shrink: 0;
-      padding: 24px 16px;
-      height: calc(100vh - var(--header-height));
-      position: sticky;
-      top: var(--header-height);
-      overflow-y: auto;
-    }
-
-    .outline-title {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-dim);
-      margin-bottom: 12px;
-    }
-
-    .outline-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .outline-link {
-      font-size: 13px;
-      color: var(--text-dim);
+      color: var(--text-muted);
       text-decoration: none;
-      display: block;
-      padding: 4px 8px;
       border-radius: 4px;
       line-height: 1.4;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       transition: all 0.15s ease;
-      border-left: 2px solid transparent;
     }
 
-    .outline-link:hover {
-      color: var(--text-muted);
+    .drawer-nav-link:hover {
+      color: var(--text-main);
+      background: var(--bg-elevated);
     }
 
-    .outline-link.active {
-      color: var(--color-accent);
-      border-left-color: var(--color-accent);
-      background: rgba(56, 189, 248, 0.08);
+    .drawer-nav-link.active {
+      color: var(--color-academic);
+      font-weight: 600;
+      background: var(--color-academic-soft);
     }
 
-    .outline-link.depth-3 {
-      padding-left: 18px;
-      font-size: 12px;
+    .drawer-nav-link.depth-3 {
+      padding-left: 22px;
+      font-size: 12.5px;
     }
 
-    /* 移动端响应式处理 */
-    @media (max-width: 1080px) {
-      aside.outline-bar {
-        display: none;
+    @media (max-width: 640px) {
+      header.academic-header {
+        padding: 0 16px;
       }
-    }
-
-    @media (max-width: 768px) {
-      .app-layout {
-        flex-direction: column;
+      main.academic-reader {
+        padding: 24px 16px 100px 16px;
       }
-      aside.sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        border-right: none;
-        border-bottom: 1px solid var(--border-subtle);
+      .paper-title {
+        font-size: 24px;
       }
-      main.content-area {
-        padding: 24px 16px;
-      }
-      .doc-meta-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .doc-actions {
-        width: 100%;
-        flex-direction: column;
-      }
-      .doc-actions .btn {
-        width: 100%;
-        justify-content: center;
+      .floating-dock {
+        bottom: 16px;
+        right: 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 顶部导航 -->
-  <header>
-    <a href="#" class="brand">
-      <img src="docs/2026/freshman/assets/RobotWorkShop.jpg" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
-      <div class="brand-title">
-        湖南大学 Robot 工作坊
-        <span class="brand-badge">知识门户</span>
+  <!-- 顶部极简页眉 -->
+  <header class="academic-header">
+    <div class="header-left">
+      <a href="#" class="brand-stamp">
+        <img src="docs/2026/freshman/assets/RobotWorkShop.jpg" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+        <span class="brand-title">湖南大学 Robot 工作坊</span>
+      </a>
+
+      <!-- 快速篇目切换选择器 -->
+      <div class="doc-picker-wrapper">
+        <select id="doc-selector" class="doc-select" aria-label="选择阅读文档"></select>
+        <span class="select-arrow">▾</span>
       </div>
-    </a>
-    <div class="nav-actions">
-      <a id="repo-link" href="https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+    </div>
+
+    <div class="header-right">
+      <!-- 主题切换 (日间/夜间) -->
+      <button id="btn-theme" class="icon-btn" title="切换阅读主题 (按键 T)">
+        <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+
+      <!-- 仓库外链 -->
+      <a id="repo-link" href="https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide" target="_blank" rel="noopener noreferrer" class="icon-btn" title="查看 GitHub 仓库">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub 组织仓库
       </a>
     </div>
   </header>
 
-  <!-- 本地文件协议提示 -->
+  <!-- 本地文件环境提示条 -->
   <div id="protocol-banner">
     <div>
-      ⚠️ <strong>本地文件预览提示</strong>：受浏览器跨域安全策略影响，直接通过 <code>file://</code> 打开无法读取数据。请在终端执行 <code>python -m http.server 8000</code>，然后访问 <code>http://localhost:8000/</code> 体验完整功能。
+      本地文件直接读取受浏览器安全策略限制。若无法渲染正文，请在终端执行 <code>python -m http.server 8000</code> 后访问 <code>http://localhost:8000/</code>。
     </div>
-    <button class="btn btn-ghost" style="color: #fef08a; padding: 2px 8px; font-size: 12px;" onclick="document.getElementById('protocol-banner').style.display='none'">我知道了</button>
+    <button style="background:none; border:none; cursor:pointer; font-size:12px; font-weight:600;" onclick="document.getElementById('protocol-banner').style.display='none'">关闭</button>
   </div>
 
-  <div class="app-layout">
-    <!-- 左侧文档导航 -->
-    <aside class="sidebar">
-      <nav id="nav-container"></nav>
-    </aside>
+  <!-- 居中长卷阅读主体 -->
+  <main class="academic-reader">
+    <!-- 论文级卷首 -->
+    <header class="paper-masthead" id="paper-head">
+      <div class="paper-org-label font-serif" id="masthead-org">HUNAN UNIVERSITY · ROBOT WORKSHOP</div>
+      <h1 class="paper-title font-serif" id="masthead-title">加载中...</h1>
+      <div class="paper-meta-row">
+        <a class="meta-tag-pill" id="masthead-tag" href="#" target="_blank" rel="noopener noreferrer">Release</a>
+        <span id="masthead-date">发布时间</span>
+        <span id="masthead-updated">更新时间</span>
+      </div>
 
-    <!-- 中间文档主体 -->
-    <main class="content-area">
-      <!-- 紧凑型顶部文档工具栏 -->
-      <section class="doc-meta-card" id="doc-meta" style="display: none;">
-        <div class="doc-info">
-          <div class="doc-title-row">
-            <h1 class="doc-headline" id="meta-title">文档标题</h1>
-            <span class="doc-tag" id="meta-tag">v2026-freshman</span>
-          </div>
-          <div class="doc-details">
-            <span id="meta-date">更新日期: 2026-10-19</span>
-            <span>·</span>
-            <span id="meta-size">PDF: 2.6 MB</span>
-          </div>
-        </div>
-        <div class="doc-actions" id="meta-actions">
-          <a id="btn-pdf" href="#" download class="btn btn-primary">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            下载官方原件 PDF
-          </a>
-        </div>
-      </section>
+      <!-- 原件与附件快捷下载条 -->
+      <div class="paper-actions-bar" id="actions-bar">
+        <a id="btn-pdf-download" href="#" download class="action-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span id="pdf-download-text">下载官方原件 PDF</span>
+        </a>
+      </div>
+    </header>
 
-      <!-- Markdown 正文渲染区域 -->
-      <article class="markdown-body" id="article-content">
-        <div style="padding: 60px 0; text-align: center; color: var(--text-dim);">
-          正在加载文档数据...
-        </div>
-      </article>
-    </main>
+    <!-- Markdown 正文渲染区 -->
+    <article class="academic-prose" id="article-prose">
+      <p style="text-align: center; color: var(--text-dim); padding: 60px 0;">正在加载学术文档正文...</p>
+    </article>
+  </main>
 
-    <!-- 右侧大纲导航 -->
-    <aside class="outline-bar">
-      <div class="outline-title">本页大纲</div>
-      <ul class="outline-list" id="outline-list">
-        <li style="color: var(--text-dim); font-size: 12px;">暂无标题</li>
-      </ul>
-    </aside>
+  <!-- 右下角悬浮交互底座 (Floating Dock) -->
+  <div class="floating-dock">
+    <button id="btn-toggle-outline" class="dock-btn" title="打开章节目录大纲">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <span>目录大纲</span>
+    </button>
+    <button id="btn-back-to-top" class="dock-btn" title="回到顶部" style="display: none;" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      <span>置顶</span>
+    </button>
   </div>
+
+  <!-- 滑动大纲抽屉 -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <aside id="outline-drawer" class="outline-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">章节目录大纲</span>
+      <button id="btn-close-drawer" class="drawer-close" title="关闭大纲 (Esc)">✕</button>
+    </div>
+    <ul id="drawer-nav-list" class="drawer-nav-list">
+      <li style="color: var(--text-dim); font-size: 13px;">暂无标题</li>
+    </ul>
+  </aside>
 
   <script>
     // 1. 全局状态
     let catalog = null;
     let currentDoc = null;
 
-    // 2. 检查协议环境
+    // 2. 环境协议检测
     if (window.location.protocol === 'file:') {
       const banner = document.getElementById('protocol-banner');
       if (banner) banner.style.display = 'flex';
     }
 
-    // 3. 相对路径重定位解析函数
+    // 3. 相对路径重定位解析器
     function resolveAssetUrl(src, markdownPath) {
       if (!src) return '';
-      // 若为外链或 base64，直接返回原地址
       if (/^(https?:)?\/\//i.test(src) || src.startsWith('data:')) {
         return src;
       }
-      // 获取当前 Markdown 所在目录路径
       const lastSlash = markdownPath.lastIndexOf('/');
       const baseDir = lastSlash !== -1 ? markdownPath.substring(0, lastSlash + 1) : '';
-      
-      // 去除可能的前置相对标识
-      let cleanSrc = src;
-      if (cleanSrc.startsWith('./')) {
-        cleanSrc = cleanSrc.substring(2);
-      }
+      let cleanSrc = src.startsWith('./') ? src.substring(2) : src;
       return baseDir + cleanSrc;
     }
 
-    // 4. 配置 Marked 与安全净化渲染
+    // 4. Marked 配置与 DOMPurify 安全净化管道
     const renderer = new marked.Renderer();
 
-    // 重载图片渲染：自动重定位 Markdown 相对图片
     renderer.image = function(href, title, text) {
-      // 兼容 marked v15 参数对象形式
       let src = typeof href === 'object' ? href.href : href;
       let imgTitle = typeof href === 'object' ? href.title : title;
       let altText = typeof href === 'object' ? href.text : text;
@@ -660,10 +712,12 @@
       if (currentDoc && currentDoc.markdownPath) {
         src = resolveAssetUrl(src, currentDoc.markdownPath);
       }
-      return `<img src="${src}" alt="${altText || ''}" title="${imgTitle || ''}">`;
+      return `<figure style="text-align:center; margin: 2em 0;">
+                <img src="${src}" alt="${altText || ''}" title="${imgTitle || ''}">
+                ${altText ? `<figcaption style="font-size: 13px; color: var(--text-dim); margin-top: 6px;">图：${altText}</figcaption>` : ''}
+              </figure>`;
     };
 
-    // 重载链接渲染：外部链接安全打开
     renderer.link = function(href, title, text) {
       let targetHref = typeof href === 'object' ? href.href : href;
       let linkTitle = typeof href === 'object' ? href.title : title;
@@ -689,68 +743,53 @@
       breaks: true
     });
 
-    // 5. 初始化加载 catalog.json
+    // 5. 初始化读取 catalog.json
     async function initCatalog() {
       try {
         const res = await fetch('catalog.json');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         catalog = await res.json();
-        
-        renderNavigation(catalog);
-        
-        // 依据 URL hash 或默认文档渲染
+
+        setupDocSelector(catalog);
+
         const hashId = window.location.hash.replace(/^#/, '');
         loadDocument(hashId || catalog.defaultDocId);
       } catch (err) {
         console.error('Failed to load catalog:', err);
-        const article = document.getElementById('article-content');
+        const article = document.getElementById('article-prose');
         article.innerHTML = `
-          <div style="background: rgba(225,29,72,0.1); border: 1px solid rgba(225,29,72,0.3); padding: 24px; border-radius: 8px;">
-            <h2 style="color: #fb7185; margin-top:0;">数据加载受阻</h2>
-            <p>无法成功读取 <code>catalog.json</code> 元数据清单。</p>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">
-              若您正在本地直接打开 HTML，请在终端执行 <code>python -m http.server 8000</code> 后访问 <code>http://localhost:8000/</code>。
+          <div style="background: rgba(136,19,55,0.06); border: 1px solid rgba(136,19,55,0.2); padding: 24px; border-radius: 6px;">
+            <h3 style="color: var(--color-academic); margin-top:0;">元数据清单加载受阻</h3>
+            <p>无法成功读取 <code>catalog.json</code> 清单配置。</p>
+            <p style="font-size: 13px; color: var(--text-dim); margin-top: 8px;">
+              若正在本地预览，请在终端执行 <code>python -m http.server 8000</code> 后访问 <code>http://localhost:8000/</code>。
             </p>
           </div>
         `;
       }
     }
 
-    // 6. 渲染分类导航菜单
-    function renderNavigation(data) {
-      const container = document.getElementById('nav-container');
-      container.innerHTML = '';
+    // 6. 配置篇目下拉选择器
+    function setupDocSelector(data) {
+      const select = document.getElementById('doc-selector');
+      select.innerHTML = '';
 
       data.categories.forEach(cat => {
-        const catDiv = document.createElement('div');
-        catDiv.className = 'nav-category';
-
-        const title = document.createElement('div');
-        title.className = 'category-title';
-        title.textContent = cat.name;
-        catDiv.appendChild(title);
+        const group = document.createElement('optgroup');
+        group.label = cat.name;
 
         cat.items.forEach(item => {
-          const itemLink = document.createElement('a');
-          itemLink.className = 'nav-item';
-          itemLink.dataset.id = item.id;
-          itemLink.href = `#${item.id}`;
-          itemLink.onclick = (e) => {
-            e.preventDefault();
-            loadDocument(item.id);
-          };
-
-          itemLink.innerHTML = `
-            <div class="nav-item-header">
-              <span class="nav-item-title">${item.title}</span>
-              <span class="nav-item-badge">${item.badge}</span>
-            </div>
-            <div class="nav-item-meta">${item.releaseTag} · ${item.publishDate}</div>
-          `;
-          catDiv.appendChild(itemLink);
+          const opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = `${item.year} · ${item.title}`;
+          group.appendChild(opt);
         });
 
-        container.appendChild(catDiv);
+        select.appendChild(group);
+      });
+
+      select.addEventListener('change', (e) => {
+        loadDocument(e.target.value);
       });
     }
 
@@ -767,129 +806,210 @@
         }
         if (targetItem) break;
       }
-
-      if (!targetItem) {
-        targetItem = catalog.categories[0].items[0];
-      }
+      if (!targetItem) targetItem = catalog.categories[0].items[0];
 
       currentDoc = targetItem;
       window.location.hash = targetItem.id;
 
-      // 更新侧边栏高亮
-      document.querySelectorAll('.nav-item').forEach(el => {
-        el.classList.toggle('active', el.dataset.id === targetItem.id);
-      });
+      // 同步选择器选项
+      const select = document.getElementById('doc-selector');
+      if (select) select.value = targetItem.id;
 
-      // 更新顶部工具栏
-      const metaCard = document.getElementById('doc-meta');
-      metaCard.style.display = 'flex';
-      document.getElementById('meta-title').textContent = targetItem.title;
-      document.getElementById('meta-tag').textContent = targetItem.releaseTag;
-      document.getElementById('meta-date').textContent = `更新时间: ${targetItem.updatedAt || targetItem.publishDate}`;
-      document.getElementById('meta-size').textContent = `官方 PDF (${targetItem.pdfSize || ''})`;
+      // 更新卷首元数据
+      document.getElementById('masthead-title').textContent = targetItem.title;
+      const mastheadTag = document.getElementById('masthead-tag');
+      mastheadTag.textContent = `${targetItem.releaseTag} · ${targetItem.badge}`;
+      mastheadTag.href = `https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/${targetItem.releaseTag}`;
+      mastheadTag.title = `前往 GitHub 查看 ${targetItem.releaseTag} 发行版本与产物`;
+      document.getElementById('masthead-date').textContent = `首发: ${targetItem.publishDate}`;
+      document.getElementById('masthead-updated').textContent = `更新: ${targetItem.updatedAt || targetItem.publishDate}`;
 
-      const btnPdf = document.getElementById('btn-pdf');
-      btnPdf.href = targetItem.pdfPath;
-      btnPdf.download = targetItem.pdfPath.split('/').pop();
-
-      // 如果有 Release 附件，追加下载按钮
-      const actions = document.getElementById('meta-actions');
-      const oldAttachBtn = document.getElementById('btn-attachment');
-      if (oldAttachBtn) oldAttachBtn.remove();
-
-      if (targetItem.attachmentUrl) {
-        const btnAttach = document.createElement('a');
-        btnAttach.id = 'btn-attachment';
-        btnAttach.className = 'btn btn-ghost';
-        btnAttach.href = targetItem.attachmentUrl;
-        btnAttach.target = '_blank';
-        btnAttach.rel = 'noopener noreferrer';
-        btnAttach.innerHTML = `
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-          下载培训附件包 (${targetItem.attachmentSize || 'ZIP'})
-        `;
-        actions.appendChild(btnAttach);
+      // 更新操作栏所有快捷链接
+      const actionsBar = document.getElementById('actions-bar');
+      // 保留第一个基础 PDF 按钮，移除后续所有动态子节点
+      while (actionsBar.children.length > 1) {
+        actionsBar.removeChild(actionsBar.lastChild);
       }
 
-      // 请求 Markdown 文本并安全渲染
-      const article = document.getElementById('article-content');
-      article.innerHTML = '<div style="padding: 40px 0; text-align: center; color: var(--text-dim);">加载文档正文中...</div>';
+      // 1. PDF 下载入口
+      const btnPdf = document.getElementById('btn-pdf-download');
+      btnPdf.href = targetItem.pdfPath;
+      btnPdf.download = targetItem.pdfPath.split('/').pop();
+      document.getElementById('pdf-download-text').textContent = `下载原件 PDF (${targetItem.pdfSize || ''})`;
+
+      function appendActionLink(iconSvg, text, href, isDownload = false) {
+        const divider = document.createElement('span');
+        divider.className = 'action-divider';
+        divider.textContent = '|';
+        actionsBar.appendChild(divider);
+
+        const a = document.createElement('a');
+        a.className = 'action-link';
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        if (isDownload) a.download = '';
+        a.innerHTML = `${iconSvg} <span>${text}</span>`;
+        actionsBar.appendChild(a);
+      }
+
+      // 2. 配套大文件附件包 (若该篇目存在)
+      if (targetItem.attachmentUrl) {
+        appendActionLink(
+          `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`,
+          `下载配套附件包 (${targetItem.attachmentSize || 'ZIP'})`,
+          targetItem.attachmentUrl,
+          true
+        );
+      }
+
+      // 3. Release 官方发行版本页面
+      appendActionLink(
+        `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>`,
+        `Release 发行页面 (${targetItem.releaseTag})`,
+        `https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/${targetItem.releaseTag}`
+      );
+
+      // 4. GitHub 上的 Markdown 源码与版本历史
+      appendActionLink(
+        `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+        `查阅 Markdown 源码`,
+        `https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/blob/main/${targetItem.markdownPath}`
+      );
+
+      // 请求正文并安全渲染
+      const prose = document.getElementById('article-prose');
+      prose.innerHTML = '<p style="text-align: center; color: var(--text-dim); padding: 60px 0;">加载学术长卷中...</p>';
 
       try {
-        const mdRes = await fetch(targetItem.markdownPath);
-        if (!mdRes.ok) throw new Error(`HTTP ${mdRes.status}`);
-        const mdText = await mdRes.text();
+        const res = await fetch(targetItem.markdownPath);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const mdText = await res.text();
 
-        // 执行 Marked 解析，并经过 DOMPurify 强制净化防御 XSS
-        const rawHtml = marked.parse(mdText);
-        const cleanHtml = DOMPurify.sanitize(rawHtml, {
+        // 执行解析并通过 DOMPurify 净化
+        const cleanHtml = DOMPurify.sanitize(marked.parse(mdText), {
           ADD_ATTR: ['target', 'rel']
         });
 
-        article.innerHTML = cleanHtml;
+        prose.innerHTML = cleanHtml;
         window.scrollTo({ top: 0, behavior: 'instant' });
 
-        // 生成右侧大纲
-        buildOutline(article);
+        // 构建大纲抽屉结构
+        buildOutlineDrawer(prose);
       } catch (err) {
-        console.error('Failed to load markdown:', err);
-        article.innerHTML = `
-          <div style="background: rgba(225,29,72,0.1); border: 1px solid rgba(225,29,72,0.3); padding: 20px; border-radius: 8px;">
-            <h3 style="color: #fb7185; margin-top:0;">正文加载异常</h3>
-            <p>无法读取文档：<code>${targetItem.markdownPath}</code>。</p>
+        console.error('Failed to load markdown text:', err);
+        prose.innerHTML = `
+          <div style="background: rgba(136,19,55,0.06); border: 1px solid rgba(136,19,55,0.2); padding: 20px; border-radius: 6px;">
+            <h4 style="color: var(--color-academic); margin-top:0;">正文读取未成功</h4>
+            <p>无法访问路径：<code>${targetItem.markdownPath}</code>。</p>
           </div>
         `;
       }
     }
 
-    // 8. 实时大纲解析与滚动监听
-    function buildOutline(articleEl) {
-      const outlineList = document.getElementById('outline-list');
-      outlineList.innerHTML = '';
+    // 8. 构建大纲抽屉
+    function buildOutlineDrawer(articleEl) {
+      const list = document.getElementById('drawer-nav-list');
+      list.innerHTML = '';
 
       const headings = articleEl.querySelectorAll('h2, h3');
       if (headings.length === 0) {
-        outlineList.innerHTML = '<li style="color: var(--text-dim); font-size: 12px;">本篇未设置二级标题</li>';
+        list.innerHTML = '<li style="color: var(--text-dim); font-size: 13px;">本篇未设置二级标题</li>';
         return;
       }
 
       headings.forEach((heading, idx) => {
-        if (!heading.id) {
-          heading.id = `heading-${idx}`;
-        }
+        if (!heading.id) heading.id = `section-${idx}`;
 
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.className = 'outline-link' + (heading.tagName === 'H3' ? ' depth-3' : '');
+        a.className = 'drawer-nav-link' + (heading.tagName === 'H3' ? ' depth-3' : '');
         a.href = `#${heading.id}`;
         a.textContent = heading.textContent.replace(/^#+\s*/, '');
         a.onclick = (e) => {
           e.preventDefault();
+          closeDrawer();
           heading.scrollIntoView({ behavior: 'smooth' });
         };
 
         li.appendChild(a);
-        outlineList.appendChild(li);
+        list.appendChild(li);
       });
-
-      // 滚动高亮当前章节
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            document.querySelectorAll('.outline-link').forEach(link => {
-              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-            });
-          }
-        });
-      }, {
-        rootMargin: '-60px 0px -70% 0px'
-      });
-
-      headings.forEach(h => observer.observe(h));
     }
 
-    // 9. 监听 hash 变动
+    // 9. 抽屉与浮动底座控制
+    const drawer = document.getElementById('outline-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const btnToggle = document.getElementById('btn-toggle-outline');
+    const btnClose = document.getElementById('btn-close-drawer');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      btnToggle.classList.add('active');
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      btnToggle.classList.remove('active');
+    }
+
+    btnToggle.addEventListener('click', () => {
+      if (drawer.classList.contains('open')) closeDrawer();
+      else openDrawer();
+    });
+
+    btnClose.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    // 10. 滚动监控（置顶按钮显隐）
+    const btnTop = document.getElementById('btn-back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTop.style.display = 'inline-flex';
+      } else {
+        btnTop.style.display = 'none';
+      }
+    });
+
+    // 11. 主题切换逻辑
+    const btnTheme = document.getElementById('btn-theme');
+    const hljsTheme = document.getElementById('hljs-theme');
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('robot-reader-theme', theme);
+
+      if (theme === 'night') {
+        hljsTheme.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css';
+      } else {
+        hljsTheme.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css';
+      }
+    }
+
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+      setTheme(cur === 'paper' ? 'night' : 'paper');
+    }
+
+    btnTheme.addEventListener('click', toggleTheme);
+
+    // 快捷键支持 (T 键切主题，Esc 关闭抽屉)
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 't' || e.key === 'T') {
+        toggleTheme();
+      } else if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+
+    // 恢复偏好主题
+    const savedTheme = localStorage.getItem('robot-reader-theme');
+    if (savedTheme) setTheme(savedTheme);
+
+    // 12. 监听 hash 变动
     window.addEventListener('hashchange', () => {
       const hashId = window.location.hash.replace(/^#/, '');
       if (hashId && (!currentDoc || currentDoc.id !== hashId)) {
@@ -897,7 +1017,7 @@
       }
     });
 
-    // 启动执行
+    // 启动
     document.addEventListener('DOMContentLoaded', initCatalog);
   </script>
 </body>

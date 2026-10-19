@@ -48,7 +48,15 @@ build/
 
 
 # ==========================================
-# Agent Skills Files
+# Release Large Assets & Archives
+# ==========================================
+*.zip
+*.tar.gz
+*.rar
+
+# ==========================================
+# Agent Skills Files & Scratch
 # ==========================================
 .agents/
 docs/superpowers/
+scratch/

@@ -1,7 +1,9 @@
 # 湖南大学 Robot 工作坊 2026 新生指南
 
-> **Hunan University Robot Workshop 2026 Freshman Guidebook**
+> **Hunan University Robot Workshop 2026 Freshman Guidebook**  
 > 凝聚热血与热爱 · 面向 2026 级新成员的极客入门指南与知识图谱
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
@@ -26,6 +28,7 @@
 | **`pyproject.toml` / `uv.lock`** | Python 工程配置 | 基于 [uv](https://github.com/astral-sh/uv) 现代化包管理器管理 |
 | **`image/` & `RobotWorkShop.jpg`** | 架构图与工坊徽标 | 包含 RoboCup 人形赛项四大核心研发组架构图与主力赛事全景图 |
 | **`README.md`** | 仓库说明 | 本文档，包含项目导航与本地构建指南 |
+| **`LICENSE`** | 开源协议 | [MIT License](LICENSE) 授权许可 |
 | **`.gitignore`** | Git 配置文件 | 忽略 LaTeX 编译中间缓存、Python 字节码与系统临时文件 |
 
 ---
@@ -62,3 +65,9 @@ xelatex -interaction=nonstopmode 新生指南.tex
 - **贡献者**：江涛、李书淇、乔淼 等原著作者 $\cdot$ 工坊历届队员与指导团队
 - **出品方**：湖南大学现代工程训练中心 Robot 工作坊
 - **指导精神**：知行合一 · 追求极致 · 传承热爱
+
+---
+
+## 📄 开源协议
+
+本项目采用 [MIT License](LICENSE) 开源协议。

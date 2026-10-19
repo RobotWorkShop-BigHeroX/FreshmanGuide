@@ -15,7 +15,7 @@ https://robotworkshop-bigherox.github.io/FreshmanGuide/
 | :--- | :--- | :--- | :--- | :--- |
 | 2026 招新指南 | 2026 级 Robot 工作坊新生指南 | v2026-freshman | docs/2026/freshman/湖南大学Robot工作坊2026新生指南.pdf (2.6 MB) | 包含具身智能与双足人形机器人方向内容，正文由 Markdown 源码与 XeLaTeX 排版工程编译生成 |
 | 2025 招新指南 | 2025 级 Robot 工作坊新生指南 | v2025-freshman | docs/2025/freshman/ROBOT工作坊2025新生的第一份指南.pdf (664 KB) | 历史原件归档，包含传统机器人竞赛规则、编程语言入门与基础考核说明 |
-| 2025 寒假训练营 | 2025 寒假精英培训计划与材料 | v2025-winter | docs/2025/winter-camp/2025寒假训练营.pdf (310 KB) | 第五届冬训计划通知细则，相关 SolidWorks 模型与立创EDA 工程发布于 GitHub Releases |
+| 2025 寒假训练营 | 2025 寒假精英培训计划与材料 | v2025-winter | docs/2025/winter-camp/2025寒假训练营.pdf (310 KB) / [Release 附件包](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter) | 第五届冬训计划通知细则。配套工程材料 2025寒假训练营培训附件.zip (58.5 MB) 作为资产发布于 GitHub Releases，不直接放入 Git 跟踪 |
 
 ## 本地运行与测试
 
@@ -66,3 +66,4 @@ FreshmanGuide/
 
 1. 仓库内代码、排版脚本、自动化测试脚本与指南正文遵循 MIT 许可协议。
 2. 寒假训练营中的 SolidWorks 机器人模型、立创EDA 教学演示板工程、讲义文档及视频由湖南大学 Robot 工作坊成员编写制作，版权归工坊所有，仅供校内社团及机器人爱好者学术交流与培训使用，禁止商业用途；引用的元器件数据手册（Datasheet）与芯片参考封装版权归各半导体原厂商所有。
+3. 大文件附件发布说明：2025 寒假训练营相关的配套材料压缩包 `2025寒假训练营培训附件.zip` 体积约为 58.5 MB（包含 SolidWorks 三维模型、立创EDA 工程文件、学习文档与教学视频）。为了避免大体积二进制文件导致 Git 版本库历史严重膨胀，该压缩包受 `.gitignore` 过滤规则保护，不直接纳入 Git 版本库跟踪，发布为 GitHub Release 独立资产。查阅下载请访问 [GitHub Release v2025-winter 发行页面](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter) 或直接下载 [2025寒假训练营培训附件.zip](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/download/v2025-winter/2025%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E8%90%A5%E5%9F%B9%E8%AE%AD%E9%99%84%E4%BB%B6.zip)。

@@ -51,3 +51,4 @@ build/
 # Agent Skills Files
 # ==========================================
 .agents/
+docs/superpowers/

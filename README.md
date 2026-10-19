@@ -13,9 +13,9 @@ https://robotworkshop-bigherox.github.io/FreshmanGuide/
 
 | 分类 | 标题 | 发布标签 | 官方文件 | 说明 |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026 招新指南 | 2026 级 Robot 工作坊新生指南 | v2026-freshman | docs/2026/freshman/湖南大学Robot工作坊2026新生指南.pdf (2.6 MB) | 包含具身智能与双足人形机器人方向内容，正文由 Markdown 源码与 XeLaTeX 排版工程编译生成 |
-| 2025 招新指南 | 2025 级 Robot 工作坊新生指南 | v2025-freshman | docs/2025/freshman/ROBOT工作坊2025新生的第一份指南.pdf (664 KB) | 历史原件归档，包含传统机器人竞赛规则、编程语言入门与基础考核说明 |
-| 2025 寒假训练营 | 2025 寒假精英培训计划与材料 | v2025-winter | docs/2025/winter-camp/2025寒假训练营.pdf (310 KB) / [Release 附件包](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter) | 第五届冬训计划通知细则。配套工程材料 2025寒假训练营培训附件.zip (58.5 MB) 作为资产发布于 GitHub Releases，不直接放入 Git 跟踪 |
+| 2026 招新指南 | [2026 级 Robot 工作坊新生指南](https://robotworkshop-bigherox.github.io/FreshmanGuide/#freshman-2026) | [`v2026-freshman`](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2026-freshman) | [湖南大学Robot工作坊2026新生指南.pdf](docs/2026/freshman/湖南大学Robot工作坊2026新生指南.pdf) (2.6 MB) | 包含具身智能与双足人形机器人方向内容，正文由 [Markdown 源码](docs/2026/freshman/新生指南.md) 与 [XeLaTeX 排版工程](docs/2026/freshman/新生指南.tex) 编译生成 |
+| 2025 招新指南 | [2025 级 Robot 工作坊新生指南](https://robotworkshop-bigherox.github.io/FreshmanGuide/#freshman-2025) | [`v2025-freshman`](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-freshman) | [ROBOT工作坊2025新生的第一份指南.pdf](docs/2025/freshman/ROBOT工作坊2025新生的第一份指南.pdf) (664 KB) | 历史原件归档，包含传统机器人竞赛规则、编程语言入门与基础考核说明，可查阅 [转录版文档](docs/2025/freshman/2025新生指南.md) |
+| 2025 寒假训练营 | [2025 寒假精英培训计划与材料](https://robotworkshop-bigherox.github.io/FreshmanGuide/#winter-2025) | [`v2025-winter`](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter) | [2025寒假训练营.pdf](docs/2025/winter-camp/2025寒假训练营.pdf) (310 KB) | 第五届冬训计划通知细则。配套工程材料 [2025寒假训练营培训附件.zip](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/download/v2025-winter/2025%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E8%90%A5%E5%9F%B9%E8%AE%AD%E9%99%84%E4%BB%B6.zip) (58.5 MB) 作为资产发布于 [GitHub Releases](https://github.com/RobotWorkShop-BigHeroX/FreshmanGuide/releases/tag/v2025-winter)，不直接放入 Git 跟踪 |
 
 ## 本地运行与测试
 
